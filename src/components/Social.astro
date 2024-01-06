@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components";
+const accounts = [
+  {
+    platform: "LinkedIn",
+    iconName: "mdi:linkedin",
+    url: "https://www.linkedin.com/in/dlaracarvajal/",
+  },
+  {
+    platform: "GitHub",
+    iconName: "mdi:github",
+    url: "https://www.github.com/dlaracarvajal/",
+  },
+  {
+    platform: "Email",
+    iconName: "mdi:email",
+    url: "mailto:d.lara.carvajal@gmail.com",
+  },
+];
+---
+
+{
+  accounts.map((account) => (
+    <a href={account.url} aria-label={account.platform} class="socialIcons">
+      <Icon name={account.iconName} size={30} />
+    </a>
+  ))
+}

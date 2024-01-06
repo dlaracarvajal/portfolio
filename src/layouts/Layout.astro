@@ -1,0 +1,72 @@
+---
+import Header from "../components/Header.astro";
+interface Props {
+  title: string;
+}
+// Supports weights 100-700 - Title Font
+import "@fontsource-variable/josefin-sans";
+// Body Font
+import "@fontsource/fira-sans/300.css";
+import "@fontsource/fira-sans/700.css";
+
+import Footer from "../components/Footer.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/src/icons/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="p-4 max-w-7xl mx-auto">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    background-color: #f1f5f9;
+    scroll-behavior: smooth;
+  }
+  html.dark {
+    background-color: #1e293b;
+    color: #fff;
+  }
+
+  body {
+    font-family: "Fira Sans", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Josefin Sans Variable", sans-serif;
+  }
+
+  .navBarLinks:hover {
+  }
+
+  .dark .navBarLinks:hover {
+  }
+
+  .socialIcons:hover {
+  }
+
+  .dark .socialIcons:hover {
+  }
+
+  .footerLinks:hover {
+  }
+
+  .dark .footerLinks:hover {
+  }
+</style>

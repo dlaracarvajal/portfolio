@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+const { id, class: className, title, iconName } = Astro.props;
+---
+
+<section id={id} class={`${className} max-w-4xl mx-auto`}>
+  <div class="flex gap-6 justify-center">
+    <Icon name={iconName} size={28} />
+    <h2 class="text-3xl uppercase tracking-widest font-light">{title}</h2>
+  </div>
+  <slot />
+</section>

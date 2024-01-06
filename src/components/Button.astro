@@ -1,0 +1,5 @@
+---
+const { href, label, class: className } = Astro.props;
+---
+
+<a href={href} class={`${className} px-6 py-3 bg-yellow-600 tracking-widest lg:text-lg font-semibold rounded-full`}>{label}</a>

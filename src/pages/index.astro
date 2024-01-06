@@ -1,0 +1,20 @@
+---
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Experience from "../components/Experience.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Diego Lara Carvajal - Web Developer";
+---
+
+<Layout title={pageTitle}>
+  <main class="flex flex-col gap-6">
+    <Hero />
+    <Experience />
+    <Projects />
+    <About />
+    <Contact />
+  </main>
+</Layout>
