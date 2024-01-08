@@ -71,27 +71,47 @@ const { title } = Astro.props;
     }
   }
 
-  .navBarLinks:hover {
-  }
-
+  .dark #experience h3,
+  .dark #projects h3,
+  .dark #education h3,
+  .dark #about strong,
+  .dark #about b,
+  .dark .hero-name,
   .dark .navBarLinks:hover {
+    color: #dfb457fe;
   }
 
+  .navBarLinks,
+  .socialIcons {
+    transition:
+      transform 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+
+  .navBarLinks:hover,
   .socialIcons:hover {
+    transform: scale(1.2);
   }
 
-  .dark .socialIcons:hover {
+  .button {
+    transition:
+      transform 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+  
+  .button:hover {
+    transform: scale(1.1);
   }
 
   .footerLinks:hover {
-  }
-
-  .dark .footerLinks:hover {
+    text-decoration-line: underline;
   }
 
   .linkComponent {
+    color: #2563eb;
   }
 
   .dark .linkComponent {
+    color: #93c5fd;
   }
 </style>

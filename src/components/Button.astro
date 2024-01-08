@@ -4,7 +4,7 @@ const { href, label, class: className, iconName } = Astro.props;
 ---
 
 <div
-  class={`${className} flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full`}
+  class={`${className} button cursor-pointer flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full`}
 >
   <Icon name={iconName} size={30} />
   <a href={href}>{label}</a>
