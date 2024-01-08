@@ -1,5 +1,72 @@
 ---
 import SectionContainer from "./SectionContainer.astro";
+import { Icon } from "astro-icon/components";
+import Skill from "./Skill.astro";
+const experiences = [
+  {
+    date: "July 2023 - Currently",
+    jobTitle: "Full-Stack Developer",
+    employer: "Freelance",
+    desc: "Specialize in the design and development of landing pages and full-stack applications with an emphasis on responsiveness, accessibility, and performance.",
+    icons: [
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:nextjs-icon", skillName: "Next" },
+      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:prisma", skillName: "Prisma" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    date: "August 2023 - October 2023",
+    jobTitle: "Web Developer",
+    employer: "BURST Creative Group",
+    desc: "My goal as a Web Developer with BURST Creative Group is to deliver flawless website design alignment, address design issues, and enhance user engagement through animations.",
+    icons: [
+      { iconName: "logos:javascript", skillName: "JavaScript" },
+      { iconName: "logos:wordpress-icon", skillName: "WordPress" },
+      { iconName: "logos:html-5", skillName: "HTML5" },
+      { iconName: "logos:css-3", skillName: "CSS3" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    date: "March 2023 - June 2023",
+    jobTitle: "Front-End Developer",
+    employer: "Homechow.ca",
+    desc: "In my role as a Frontend Developer at Homechow.ca, I excel in transforming design concepts into code to craft accessible, responsive, and user-friendly pages and components for a startup food delivery service.",
+    icons: [
+      { iconName: "logos:nextjs-icon", skillName: "Next" },
+      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:storybook-icon", skillName: "Storybook" },
+      { iconName: "logos:cypress-icon", skillName: "Cypress" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+];
 ---
 
-<SectionContainer id="experience" title="Experience" iconName="mdi:briefcase" />
+<SectionContainer id="experience" title="Experience" iconName="mdi:briefcase">
+  <ol class="relative border-s border-current">
+    {
+      experiences.map((experience) => (
+        <li class="mb-10 ms-8">
+          <span class="absolute flex items-center justify-center size-6 bg-yellow-600 rounded-full -start-3 ring-8 ring-yellow-600">
+            <Icon name="mdi:calendar-text" size={22} />
+          </span>
+          <h3 class="flex items-center mb-1 text-2xl font-semibold">
+            {experience.jobTitle} - {experience.employer}
+          </h3>
+          <time class="block mb-2 text-sm leading-none">{experience.date}</time>
+          <p class="mb-4">{experience.desc}</p>
+          <div class="flex flex-wrap gap-3">
+            {experience.icons.map((icon) => (
+              <Skill iconName={icon.iconName} skillName={icon.skillName} />
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</SectionContainer>

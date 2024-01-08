@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+const { text, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="linkComponent inline-flex items-center font-medium hover:underline"
+>
+  {text}
+  <Icon name="mdi:arrow-right" />
+</a>

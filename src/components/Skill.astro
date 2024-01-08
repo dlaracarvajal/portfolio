@@ -1,0 +1,11 @@
+---
+const { iconName, skillName } = Astro.props;
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  class="flex items-center gap-1 py-1 px-3 w-fit rounded-full bg-gray-100 text-black border border-gray-300 shadow-sm"
+>
+  <Icon name={iconName} size={20} />
+  <p class="text-sm">{skillName}</p>
+</div>

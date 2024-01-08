@@ -24,7 +24,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="p-4 max-w-7xl mx-auto">
+  <body class="py-4 px-6 max-w-7xl mx-auto">
     <Header />
     <slot />
     <Footer />
@@ -43,6 +43,7 @@ const { title } = Astro.props;
 
   body {
     font-family: "Fira Sans", sans-serif;
+    font-size: 18px;
   }
 
   h1,
@@ -50,6 +51,24 @@ const { title } = Astro.props;
   h3,
   h4 {
     font-family: "Josefin Sans Variable", sans-serif;
+  }
+
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .navBarLinks:hover {
@@ -68,5 +87,11 @@ const { title } = Astro.props;
   }
 
   .dark .footerLinks:hover {
+  }
+
+  .linkComponent {
+  }
+
+  .dark .linkComponent {
   }
 </style>

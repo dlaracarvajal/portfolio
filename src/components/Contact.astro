@@ -1,6 +1,138 @@
 ---
+import { Icon } from "astro-icon/components";
 import SectionContainer from "./SectionContainer.astro";
-
+const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
 ---
+
 <SectionContainer id="contact" title="Contact" iconName="mdi:email">
+  <form method="POST" id="form" class="max-w-lg mx-auto">
+    <input type="hidden" name="access_key" value={ACCESS_KEY} />
+    <div class="mb-4">
+      <label for="name" class="block mb-2">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="base-input"
+        required
+        class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block mb-2">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="base-input"
+        required
+        class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="message" class="block mb-2">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        required
+        class="block p-2.5 w-full min-h-[130px] text-black bg-gray-50 rounded-lg border border-gray-300"
+        placeholder="Leave a comment..."></textarea>
+    </div>
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="hidden"
+      style="display: none;"
+    />
+    <div
+      class="flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full w-fit mx-auto"
+    >
+      <Icon name="mdi:email-fast" size={30} />
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <div
+    id="modal"
+    class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center opacity-0 transition-opacity duration-300"
+    style="display: none;"
+  >
+    <div
+      class="bg-[#f1f5f9] border-gray-300 text-black p-4 rounded-lg w-[250px] min-h-[100px] flex flex-col justify-center items-center gap-2"
+    >
+      <div id="spinner" class="hidden">
+        <div class="loader"></div>
+      </div>
+      <div id="successIcon" class="hidden">
+        <Icon name="success" size={40} />
+      </div>
+      <div id="errorIcon" class="hidden">
+        <Icon name="error" size={40} />
+      </div>
+      <p id="modal-content"></p>
+    </div>
+  </div>
+
+  <script is:inline>
+    const form = document.getElementById("form");
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modal-content");
+    const spinner = document.getElementById("spinner");
+    const successIcon = document.getElementById("successIcon");
+    const errorIcon = document.getElementById("errorIcon");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      modalContent.innerHTML = "Please wait...";
+      spinner.classList.remove("hidden");
+      modal.style.display = "flex";
+      modal.style.opacity = "1";
+
+      successIcon.classList.add("hidden");
+      errorIcon.classList.add("hidden");
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          spinner.classList.add("hidden");
+
+          if (response.status == 200) {
+            successIcon.classList.remove("hidden");
+            modalContent.innerHTML = json.message;
+            console.log(json.message);
+          } else {
+            errorIcon.classList.remove("hidden");
+            modalContent.innerHTML = json.message;
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          spinner.classList.add("hidden");
+          errorIcon.classList.remove("hidden");
+          modalContent.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          setTimeout(() => {
+            modal.style.opacity = "0";
+            setTimeout(() => {
+              modal.style.display = "none";
+              successIcon.classList.add("hidden");
+              errorIcon.classList.add("hidden");
+            }, 300);
+          }, 2000);
+        });
+    });
+  </script>
 </SectionContainer>

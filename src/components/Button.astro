@@ -1,5 +1,11 @@
 ---
-const { href, label, class: className } = Astro.props;
+import { Icon } from "astro-icon/components";
+const { href, label, class: className, iconName } = Astro.props;
 ---
 
-<a href={href} class={`${className} px-6 py-3 bg-yellow-600 tracking-widest lg:text-lg font-semibold rounded-full`}>{label}</a>
+<div
+  class={`${className} flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full`}
+>
+  <Icon name={iconName} size={30} />
+  <a href={href}>{label}</a>
+</div>
