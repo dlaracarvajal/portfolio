@@ -1,5 +1,95 @@
 ---
 import SectionContainer from "./SectionContainer.astro";
+import { Image } from "astro:assets";
+import diegoProfilePicture from "../../public/images/diego-profile-photo.jpeg";
+import { Icon } from "astro-icon/components";
 ---
 
-<SectionContainer id="about" title="About" iconName="mdi:account" />
+<SectionContainer id="about" title="About" iconName="mdi:account">
+    <article
+      class="mb-10 flex flex-col gap-10 max-w-[480px] mx-auto lg:max-w-full lg:flex-row"
+    >
+      <div class="flex-grow order-2 flex flex-col gap-4">
+        <p>
+          Welcome to my professional space! I'm <strong
+            >Diego Lara Carvajal</strong
+          >, a <strong>Web Developer</strong>
+          with a vibrant flair for crafting <b>user-friendly</b> and <b
+            >innovative digital experiences</b
+          >. Born and raised in the scenic landscapes of <b>Chile</b>, I now
+          channel my creative energy into the dynamic tech scene of <strong
+            >Vancouver, BC</strong
+          >.
+        </p>
+
+        <p>
+          While my academic journey began in the field of <b>Psychology</b>,
+          it's the logical yet imaginative world of coding and design that has
+          captured my full attention. My study of the human mind has not gone to
+          waste, however; it's given me a unique perspective on <b
+            >user experience and interaction</b
+          >—skills that I now apply to every line of code I write.
+        </p>
+
+        <div
+          id="moreContent"
+          class="flex flex-col gap-4 overflow-hidden max-h-0 transition-all duration-300"
+        >
+          <p>
+            I'm dedicated to the art of web development, constantly learning and
+            staying ahead of the curve. Whether it's a simple website tweak or a
+            complex application build, my approach is all about blending <b
+              >form with function</b
+            > to achieve a harmonious user experience.
+          </p>
+
+          <p>
+            When I'm not immersed in coding, you can find me exploring new
+            cultures through travel, challenging friends in sports, or reliving
+            my competitive days in <b>FIFA international tournaments</b>. These
+            experiences shape the creativity and passion I bring to my
+            professional work.
+          </p>
+
+          <p class="mb-4">
+            I'm on the lookout for a team that values <b>innovation</b>, a <b
+              >thirst for learning</b
+            >, and a <b>drive</b> to push the boundaries of what's possible on the
+            web.
+            <strong>Let's create something remarkable together</strong>.
+          </p>
+        </div>
+        <div
+          class="flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full w-fit mx-auto"
+        >
+          <Icon name="mdi:book-open" size={30} />
+          <button onclick="toggleContent()" id="readMoreButton"
+            >Read More</button
+          >
+        </div>
+      </div>
+      <Image
+        src={diegoProfilePicture}
+        alt="Diego Profile Picture"
+        width={300}
+        height={300}
+        class="flex-1 rounded-full self-center lg:order-2"
+      />
+    </article>
+  </div>
+</SectionContainer>
+
+<script is:inline>
+  function toggleContent() {
+    const moreContent = document.getElementById("moreContent");
+    const readMoreButton = document.getElementById("readMoreButton");
+
+    if (moreContent.style.maxHeight) {
+      moreContent.style.maxHeight = null;
+      readMoreButton.innerText = "Read More";
+    } else {
+      moreContent.style.maxHeight = moreContent.scrollHeight + "px";
+      readMoreButton.innerText = "Read Less";
+    }
+  }
+</script>

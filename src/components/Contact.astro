@@ -5,14 +5,15 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
 ---
 
 <SectionContainer id="contact" title="Contact" iconName="mdi:email">
-  <form method="POST" id="form" class="max-w-lg mx-auto">
+  <form method="POST" id="form" class="max-w-[480px] mx-auto mb-10">
     <input type="hidden" name="access_key" value={ACCESS_KEY} />
     <div class="mb-4">
       <label for="name" class="block mb-2">Name</label>
       <input
         type="text"
+        placeholder="Enter your full name"
         name="name"
-        id="base-input"
+        id="name"
         required
         class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
       />
@@ -21,8 +22,9 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
       <label for="email" class="block mb-2">Email</label>
       <input
         type="email"
+        placeholder="Enter your email address"
         name="email"
-        id="base-input"
+        id="email"
         required
         class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
       />
@@ -35,7 +37,7 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
         rows="4"
         required
         class="block p-2.5 w-full min-h-[130px] text-black bg-gray-50 rounded-lg border border-gray-300"
-        placeholder="Leave a comment..."></textarea>
+        placeholder="Type your message here..."></textarea>
     </div>
     <input
       type="checkbox"

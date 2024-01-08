@@ -99,8 +99,8 @@ const projects = [
 <SectionContainer id="projects" title="Projects" iconName="mdi:xml">
   {
     projects.map((project) => (
-      <article class="flex flex-col md:flex-row items-center border border-gray-300 rounded-lg mb-10">
-        <div class="flex flex-col justify-between p-4 leading-normal md:order-2">
+      <article class="flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center border border-gray-300 rounded-lg mb-10">
+        <div class="flex flex-col justify-between p-4 leading-normal lg:order-2">
           <h3 class="flex items-center mb-1 text-2xl font-semibold">
             {project.title}
           </h3>
@@ -122,7 +122,8 @@ const projects = [
           alt={project.imageAlt}
           width={480}
           height={400}
-          class="object-cover h-[380px] rounded-t-lg md:rounded-tr-none md:rounded-bl-lg"
+          class="object-cover h-[380px] rounded-b-lg lg:rounded-tl-lg lg:rounded-tr-none lg:rounded-br-none "
+
         />
       </article>
     ))
