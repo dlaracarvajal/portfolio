@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Social from "./Social.astro";
+import diegoProfilePicture from "../../public/images/diego-profile-photo.jpeg";
 import Button from "./Button.astro";
 ---
 
@@ -9,9 +10,7 @@ import Button from "./Button.astro";
 >
   <div>
     <Image
-      src="/images/diego-profile-photo.jpeg"
-      width={200}
-      height={200}
+      src={diegoProfilePicture}
       alt="Profile Picture"
       loading="lazy"
       class="rounded-full w-[200px] lg:w-[300px]"
@@ -20,9 +19,7 @@ import Button from "./Button.astro";
   <div>
     <h1 class="text-2xl lg:text-4xl">
       Hi there!<br />
-      <span class="text-4xl lg:text-6xl"
-        >I'm <span class="hero-name">Diego Lara Carvajal</span></span
-      >
+      <span class="text-4xl lg:text-6xl">I'm <span class="hero-name">Diego Lara Carvajal</span></span>
     </h1>
     <p class="text-xl lg:text-2xl">
       A dedicated <strong>Web Developer</strong> based in <strong
