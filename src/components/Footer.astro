@@ -17,17 +17,22 @@ const links = [
         {
           links.map((link) => (
             <li class="footerLinks">
-              <a href={link.href} >{link.label}</a>
+              <a href={link.href}>{link.label}</a>
             </li>
           ))
         }
       </ul>
     </nav>
   </div>
-  <hr class="border-gray-300"/>
-  <p class="flex justify-center">
-    &copy; 2024 Diego Lara Carvajal. All Rights Reserved.
-  </p>
+  <hr class="border-gray-300" />
+  <div class="flex justify-center">
+    <p>
+      &copy; 2024 Diego Lara Carvajal. Design inspired by <a
+        href="https://porfolio.dev/"
+        class="underline">Midudev's portfolio</a
+      >.
+    </p>
+  </div>
   <div class="flex justify-center gap-3">
     <Social />
   </div>

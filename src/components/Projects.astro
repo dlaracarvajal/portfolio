@@ -6,6 +6,36 @@ import Link from "./Link.astro";
 
 const projects = [
   {
+    title: "EV Drop Tech",
+    date: "February 2024 - Present",
+    desc: "EV Drop is an app facilitating the efficient use of EV infrastructure, prioritizing accessibility and user convenience.",
+    imageSrc: "/images/",
+    imageAlt: "EV Drop Tech Project",
+    links: [],
+    icons: [
+      { iconName: "logos:react", skillName: "React" },
+      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
+      { iconName: "logos:nodejs-icon", skillName: "Node.js" },
+      { iconName: "logos:prisma", skillName: "Prisma" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    title: "Remedi App",
+    date: "September 2023 - Present",
+    desc: "Remedi is a platform that simplifies the medication request process for patients and pharmacies, enhancing healthcare accessibility and efficiency.",
+    imageSrc: "/images/remedi.jpeg",
+    imageAlt: "Remedi App Project",
+    links: [],
+    icons: [
+      { iconName: "logos:nextjs-icon", skillName: "Next" },
+      { iconName: "logos:prisma", skillName: "Prisma" },
+      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
     title: "Inti Holística",
     date: "July 2023 - October 2023",
     desc: "Inti Holística offers professional guidance in your personal evolution, empowering your healing journey for more conscious and free life decisions.",
@@ -99,8 +129,8 @@ const projects = [
 <SectionContainer id="projects" title="Projects" iconName="mdi:xml">
   {
     projects.map((project) => (
-      <article class="flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center border border-gray-300 rounded-lg mb-10">
-        <div class="flex flex-col justify-between p-4 leading-normal lg:order-2">
+      <article class="flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center border border-gray-300 rounded-lg mb-10 overflow-hidden">
+        <div class="lg:flex-1 flex flex-col justify-between p-4 leading-normal lg:order-2">
           <h3 class="flex items-center mb-1 text-2xl font-semibold">
             {project.title}
           </h3>
@@ -117,14 +147,15 @@ const projects = [
             ))}
           </div>
         </div>
-        <Image
-          src={project.imageSrc}
-          alt={project.imageAlt}
-          width={480}
-          height={400}
-          class="object-cover h-[380px] rounded-b-lg lg:rounded-tl-lg lg:rounded-tr-none lg:rounded-br-none "
-
-        />
+        <div class="lg:flex-1 w-full lg:w-1/2 flex justify-center overflow-hidden">
+          <Image
+            src={project.imageSrc}
+            alt={project.imageAlt}
+            width={480}
+            height={400}
+            class="object-cover h-[380px] w-full transition-all duration-300 hover:scale-125 lg:hover:translate-x-12 lg:hover:translate-y-10"
+          />
+        </div>
       </article>
     ))
   }
