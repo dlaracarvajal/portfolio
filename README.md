@@ -25,3 +25,6 @@ cd portfolio
 # Install dependencies and run
 npm install
 npm start
+```
+
+Design inspired by [Midudev's portfolio](https://porfolio.dev/)
