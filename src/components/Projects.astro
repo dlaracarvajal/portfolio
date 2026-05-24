@@ -6,29 +6,27 @@ import Link from "./Link.astro";
 
 const projects = [
   {
-    title: "EV Drop Tech",
-    date: "February 2024 - Present",
-    desc: "EV Drop is an app facilitating the efficient use of EV infrastructure, prioritizing accessibility and user convenience.",
+    title: "EVDrop",
+    date: "February 2024 - June 2024",
+    desc: "MVP mobile application for locating electric vehicle charging stations and booking charging sessions, built with map-based discovery, user authentication, backend data management, and a functional reservation flow using prototype charger location data.",
     imageSrc: "/images/evdrop.webp",
-    imageAlt: "EV Drop Tech Project",
+    imageAlt: "EVDrop mobile application project",
     links: [],
     icons: [
-      { iconName: "logos:react", skillName: "React" },
+      { iconName: "logos:react", skillName: "React Native" },
       { iconName: "logos:typescript-icon", skillName: "TypeScript" },
-      { iconName: "logos:nodejs-icon", skillName: "Node.js" },
-      { iconName: "logos:prisma", skillName: "Prisma" },
       { iconName: "logos:github-icon", skillName: "GitHub" },
     ],
   },
   {
     title: "Remedi App",
-    date: "September 2023 - Present",
-    desc: "Remedi is a platform that simplifies the medication request process for patients and pharmacies, enhancing healthcare accessibility and efficiency.",
+    date: "September 2023 - March 2024",
+    desc: "Full-stack MVP web application supporting medication requests between patients and pharmacies, with authentication, database-driven workflows, and core application logic.",
     imageSrc: "/images/remedi.webp",
-    imageAlt: "Remedi App Project",
+    imageAlt: "Remedi App project",
     links: [],
     icons: [
-      { iconName: "logos:nextjs-icon", skillName: "Next" },
+      { iconName: "logos:nextjs-icon", skillName: "Next.js" },
       { iconName: "logos:prisma", skillName: "Prisma" },
       { iconName: "logos:typescript-icon", skillName: "TypeScript" },
       { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
@@ -36,11 +34,30 @@ const projects = [
     ],
   },
   {
+    title: "Sentus",
+    date: "Business Website",
+    desc: "Production business website designed to showcase services, publish content, and capture leads through serverless email handling.",
+    imageSrc: "/images/sentus.jpeg",
+    imageAlt: "",
+    links: [
+      {
+        text: "Visit Live Site",
+        url: "https://sentus.cl",
+      },
+    ],
+    icons: [
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:javascript", skillName: "JavaScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
     title: "Inti Holística",
     date: "July 2023 - October 2023",
-    desc: "Inti Holística offers professional guidance in your personal evolution, empowering your healing journey for more conscious and free life decisions.",
+    desc: "Service-based website designed to showcase wellness services and support appointment booking through a responsive, accessible interface.",
     imageSrc: "/images/inti-ss.webp",
-    imageAlt: "Inti Holística Project",
+    imageAlt: "Inti Holística website project",
     links: [
       {
         text: "Visit Live Site",
@@ -130,7 +147,7 @@ const projects = [
   {
     projects.map((project) => (
       <article class="flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center border border-gray-300 rounded-lg mb-10 overflow-hidden">
-        <div class="lg:flex-1 flex flex-col justify-between p-4 leading-normal lg:order-2">
+        <div class={project.imageSrc ? "lg:flex-1 flex flex-col justify-between p-4 leading-normal lg:order-2" : "w-full flex flex-col justify-between p-4 leading-normal"}>
           <h3 class="flex items-center mb-1 text-2xl font-semibold">
             {project.title}
           </h3>
@@ -147,15 +164,17 @@ const projects = [
             ))}
           </div>
         </div>
-        <div class="lg:flex-1 w-full lg:w-1/2 flex justify-center overflow-hidden">
-          <Image
-            src={project.imageSrc}
-            alt={project.imageAlt}
-            width={480}
-            height={400}
-            class="object-cover h-[380px] w-full transition-all duration-300 hover:scale-125 lg:hover:translate-x-12 lg:hover:translate-y-10"
-          />
-        </div>
+        {project.imageSrc && (
+          <div class="lg:flex-1 w-full lg:w-1/2 flex justify-center overflow-hidden">
+            <Image
+              src={project.imageSrc}
+              alt={project.imageAlt}
+              width={480}
+              height={400}
+              class="object-cover h-[380px] w-full transition-all duration-300 hover:scale-125 lg:hover:translate-x-12 lg:hover:translate-y-10"
+            />
+          </div>
+        )}
       </article>
     ))
   }
