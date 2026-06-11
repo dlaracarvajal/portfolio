@@ -163,8 +163,10 @@ const { title } = Astro.props;
             experienceSection.querySelector(":scope > div");
           const experienceLine =
             experienceSection.querySelector(".experience-line");
-          const experienceItems = experienceSection.querySelectorAll("li");
-
+          const experienceItems = experienceSection.querySelectorAll(
+            ".experience-timeline li",
+          );
+          
           gsap.set(experienceLine, {
             scaleY: 0,
           });
