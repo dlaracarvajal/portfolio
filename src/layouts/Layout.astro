@@ -42,23 +42,14 @@ const { title } = Astro.props;
     <Header />
     <slot />
     <Footer />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-      defer></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-      defer></script>
-    <script is:inline>
-      window.addEventListener("load", () => {
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      function runAnimations() {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           return;
         }
-
-        if (!window.gsap || !window.ScrollTrigger) {
-          return;
-        }
-
-        const { gsap, ScrollTrigger } = window;
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -123,7 +114,7 @@ const { title } = Astro.props;
             "-=0.3",
           );
 
-        function animateSection(sectionSelector, itemSelector) {
+        function animateSection(sectionSelector: string, itemSelector: string) {
           const section = document.querySelector(sectionSelector);
 
           if (!section) {
@@ -166,7 +157,7 @@ const { title } = Astro.props;
           const experienceItems = experienceSection.querySelectorAll(
             ".experience-timeline li",
           );
-          
+
           gsap.set(experienceLine, {
             scaleY: 0,
           });
@@ -218,7 +209,13 @@ const { title } = Astro.props;
         animateSection("#contact", "form");
 
         ScrollTrigger.refresh();
-      });
+      }
+
+      if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", runAnimations);
+      } else {
+        runAnimations();
+      }
     </script>
   </body>
 </html>
