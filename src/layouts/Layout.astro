@@ -62,19 +62,79 @@ const { title } = Astro.props;
 
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from("header", {
-          autoAlpha: 0,
-          y: -16,
-          duration: 0.7,
-          ease: "power3.out",
+        const introTimeline = gsap.timeline({
+          defaults: {
+            ease: "power3.out",
+          },
         });
 
-        gsap.utils.toArray("section").forEach((section) => {
-          const sectionHeader = section.querySelector(":scope > div");
-          const contentItems = section.querySelectorAll(
-            ":scope article, :scope form, :scope > div:not(:first-child)"
+        introTimeline
+          .from("header", {
+            autoAlpha: 0,
+            y: -18,
+            duration: 0.55,
+          })
+          .from(
+            ".navBarLinks, header .socialIcons, header button",
+            {
+              autoAlpha: 0,
+              y: -8,
+              duration: 0.35,
+              stagger: 0.06,
+            },
+            "-=0.35",
+          )
+          .from(
+            "main h1, .hero-name",
+            {
+              autoAlpha: 0,
+              y: 24,
+              duration: 0.5,
+            },
+            "-=0.15",
+          )
+          .from(
+            "main h1 + p, main .hero-description, main .hero-subtitle",
+            {
+              autoAlpha: 0,
+              y: 18,
+              duration: 0.5,
+            },
+            "-=0.35",
+          )
+          .from(
+            ".hero-photo",
+            {
+              autoAlpha: 0,
+              scale: 0.96,
+              y: 16,
+              duration: 0.6,
+            },
+            "-=0.5",
+          )
+          .from(
+            "main .button, main .socialIcons",
+            {
+              autoAlpha: 0,
+              y: 14,
+              duration: 0.45,
+              stagger: 0.06,
+            },
+            "-=0.3",
           );
-          const items = [sectionHeader, ...contentItems].filter(Boolean);
+
+        function animateSection(sectionSelector, itemSelector) {
+          const section = document.querySelector(sectionSelector);
+
+          if (!section) {
+            return;
+          }
+
+          const sectionHeader = section.querySelector(":scope > div");
+          const items = [
+            sectionHeader,
+            ...section.querySelectorAll(itemSelector),
+          ].filter(Boolean);
 
           if (!items.length) {
             return;
@@ -83,16 +143,79 @@ const { title } = Astro.props;
           gsap.from(items, {
             autoAlpha: 0,
             y: 28,
-            duration: 0.7,
+            duration: 0.55,
             ease: "power3.out",
-            stagger: 0.12,
+            stagger: 0.1,
             scrollTrigger: {
               trigger: section,
-              start: "top 80%",
+              start: "top 78%",
               once: true,
             },
           });
-        });
+        }
+
+        animateSection("#about", "article");
+
+        const experienceSection = document.querySelector("#experience");
+
+        if (experienceSection) {
+          const experienceHeader =
+            experienceSection.querySelector(":scope > div");
+          const experienceLine =
+            experienceSection.querySelector(".experience-line");
+          const experienceItems = experienceSection.querySelectorAll("li");
+
+          gsap.set(experienceLine, {
+            scaleY: 0,
+          });
+
+          gsap.set(experienceItems, {
+            autoAlpha: 0,
+            y: 24,
+          });
+
+          const experienceTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: experienceSection,
+              start: "top 78%",
+              once: true,
+            },
+          });
+
+          experienceTimeline
+            .from(experienceHeader, {
+              autoAlpha: 0,
+              y: 24,
+              duration: 0.45,
+              ease: "power3.out",
+            })
+            .to(
+              experienceLine,
+              {
+                scaleY: 1,
+                duration: 0.75,
+                ease: "power2.out",
+              },
+              "-=0.15",
+            )
+            .to(
+              experienceItems,
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.45,
+                ease: "power3.out",
+                stagger: 0.1,
+              },
+              "-=0.55",
+            );
+        }
+
+        animateSection("#projects", ".project-card");
+        animateSection("#education", "article, li");
+        animateSection("#contact", "form");
+
+        ScrollTrigger.refresh();
       });
     </script>
   </body>
