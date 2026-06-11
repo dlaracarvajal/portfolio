@@ -5,39 +5,78 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
 ---
 
 <SectionContainer id="contact" title="Contact" iconName="mdi:email">
-  <form method="POST" id="form" class="max-w-[480px] mx-auto mb-10">
+  <form method="POST" id="form" novalidate class="max-w-[480px] mx-auto mb-10">
     <input type="hidden" name="access_key" value={ACCESS_KEY} />
     <div class="mb-4">
       <label for="name" class="block mb-2">Name</label>
-      <input
-        type="text"
-        placeholder="Enter your full name"
-        name="name"
-        id="name"
-        required
-        class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
-      />
+
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Enter your full name"
+          name="name"
+          id="name"
+          class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5 pr-10"
+        />
+
+        <span
+          id="nameIcon"
+          class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm font-bold"
+        >
+          !
+        </span>
+      </div>
+
+      <p id="nameError" class="hidden mt-1 text-sm text-red-400">
+        Please enter your name.
+      </p>
     </div>
     <div class="mb-4">
       <label for="email" class="block mb-2">Email</label>
-      <input
-        type="email"
-        placeholder="Enter your email address"
-        name="email"
-        id="email"
-        required
-        class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5"
-      />
+
+      <div class="relative">
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          name="email"
+          id="email"
+          class="bg-gray-50 border border-gray-300 text-black rounded-lg block w-full p-2.5 pr-10"
+        />
+
+        <span
+          id="emailIcon"
+          class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm font-bold"
+        >
+          !
+        </span>
+      </div>
+
+      <p id="emailError" class="hidden mt-1 text-sm text-red-400">
+        Please enter a valid email address.
+      </p>
     </div>
     <div class="mb-4">
       <label for="message" class="block mb-2">Message</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="4"
-        required
-        class="block p-2.5 w-full min-h-[130px] text-black bg-gray-50 rounded-lg border border-gray-300"
-        placeholder="Type your message here..."></textarea>
+
+      <div class="relative">
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          class="block p-2.5 pr-10 w-full min-h-[130px] text-black bg-gray-50 rounded-lg border border-gray-300"
+          placeholder="Type your message here..."></textarea>
+
+        <span
+          id="messageIcon"
+          class="hidden absolute right-3 top-4 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm font-bold"
+        >
+          !
+        </span>
+      </div>
+
+      <p id="messageError" class="hidden mt-1 text-sm text-red-400">
+        Please enter a message.
+      </p>
     </div>
     <input
       type="checkbox"
@@ -45,12 +84,13 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
       class="hidden"
       style="display: none;"
     />
-    <div
+    <button
+      type="submit"
       class="button mt-8 cursor-pointer flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full w-fit mx-auto"
     >
       <Icon name="mdi:email-fast" size={30} />
-      <button type="submit">Submit</button>
-    </div>
+      <span>Submit</span>
+    </button>
   </form>
 
   <div
@@ -82,8 +122,92 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
     const successIcon = document.getElementById("successIcon");
     const errorIcon = document.getElementById("errorIcon");
 
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const messageError = document.getElementById("messageError");
+
+    const nameIcon = document.getElementById("nameIcon");
+    const emailIcon = document.getElementById("emailIcon");
+    const messageIcon = document.getElementById("messageIcon");
+
+    function showError(input, errorElement, iconElement) {
+      input.classList.remove("border-gray-300");
+      input.classList.add(
+        "border-red-500",
+        "focus:border-red-500",
+        "focus:ring-red-500",
+      );
+
+      errorElement.classList.remove("hidden");
+      iconElement.classList.remove("hidden");
+    }
+
+    function clearError(input, errorElement, iconElement) {
+      input.classList.remove(
+        "border-red-500",
+        "focus:border-red-500",
+        "focus:ring-red-500",
+      );
+      input.classList.add("border-gray-300");
+
+      errorElement.classList.add("hidden");
+      iconElement.classList.add("hidden");
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      clearError(nameInput, nameError, nameIcon);
+      clearError(emailInput, emailError, emailIcon);
+      clearError(messageInput, messageError, messageIcon);
+
+      if (!nameInput.value.trim()) {
+        showError(nameInput, nameError, nameIcon);
+        isValid = false;
+      }
+
+      if (!emailInput.value.trim() || !emailInput.validity.valid) {
+        showError(emailInput, emailError, emailIcon);
+        isValid = false;
+      }
+
+      if (!messageInput.value.trim()) {
+        showError(messageInput, messageError, messageIcon);
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    nameInput.addEventListener("input", () => {
+      if (nameInput.value.trim()) {
+        clearError(nameInput, nameError, nameIcon);
+      }
+    });
+
+    emailInput.addEventListener("input", () => {
+      if (emailInput.value.trim() && emailInput.validity.valid) {
+        clearError(emailInput, emailError, emailIcon);
+      }
+    });
+
+    messageInput.addEventListener("input", () => {
+      if (messageInput.value.trim()) {
+        clearError(messageInput, messageError, messageIcon);
+      }
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
+
       const formData = new FormData(form);
       const object = Object.fromEntries(formData);
       const json = JSON.stringify(object);
@@ -105,17 +229,15 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
         body: json,
       })
         .then(async (response) => {
-          let json = await response.json();
+          const json = await response.json();
           spinner.classList.add("hidden");
 
-          if (response.status == 200) {
+          if (response.status === 200) {
             successIcon.classList.remove("hidden");
             modalContent.innerHTML = json.message;
-            console.log(json.message);
           } else {
             errorIcon.classList.remove("hidden");
-            modalContent.innerHTML = json.message;
-            console.log(response);
+            modalContent.innerHTML = json.message || "Something went wrong!";
           }
         })
         .catch((error) => {
@@ -124,10 +246,12 @@ const ACCESS_KEY = import.meta.env.PUBLIC_ACCESS_KEY;
           errorIcon.classList.remove("hidden");
           modalContent.innerHTML = "Something went wrong!";
         })
-        .then(function () {
+        .then(() => {
           form.reset();
+
           setTimeout(() => {
             modal.style.opacity = "0";
+
             setTimeout(() => {
               modal.style.display = "none";
               successIcon.classList.add("hidden");

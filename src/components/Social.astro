@@ -21,7 +21,13 @@ const accounts = [
 
 {
   accounts.map((account) => (
-    <a href={account.url} aria-label={account.platform} class="socialIcons">
+    <a
+      href={account.url}
+      aria-label={account.platform}
+      class="socialIcons"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Icon name={account.iconName} size={30} />
     </a>
   ))

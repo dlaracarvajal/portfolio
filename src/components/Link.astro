@@ -1,10 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
-const { text, href } = Astro.props;
+const { text, href, target = "_self" } = Astro.props;
 ---
 
 <a
   href={href}
+  target={target}
+  rel={target === "_blank" ? "noopener noreferrer" : undefined}
   class="linkComponent inline-flex items-center font-medium hover:underline"
 >
   {text}

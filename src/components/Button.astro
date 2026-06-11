@@ -1,11 +1,20 @@
 ---
 import { Icon } from "astro-icon/components";
-const { href, label, class: className, iconName } = Astro.props;
+const {
+  href,
+  label,
+  class: className = "",
+  iconName,
+  target = "_self",
+} = Astro.props;
 ---
 
-<div
+<a
+  href={href}
+  target={target}
+  rel={target === "_blank" ? "noopener noreferrer" : undefined}
   class={`${className} button cursor-pointer flex gap-1 items-center px-4 py-2 bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full`}
 >
   <Icon name={iconName} size={30} />
-  <a href={href}>{label}</a>
-</div>
+  {label}
+</a>

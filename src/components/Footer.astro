@@ -27,9 +27,9 @@ const links = [
   <hr class="border-gray-300" />
   <div class="flex justify-center">
     <p class="text-center text-balance">
-      &copy; 2024 Diego Lara Carvajal. Design inspired by <a
-        href="https://porfolio.dev/"
-        class="hover:underline">Midudev's portfolio</a
+      &copy; <span id="currentYear">2026</span> Diego Lara Carvajal. Design inspired
+      by <a href="https://portfolio.dev/" class="hover:underline"
+        >Midudev's portfolio</a
       >.
     </p>
   </div>
@@ -37,3 +37,7 @@ const links = [
     <Social />
   </div>
 </footer>
+
+<script is:inline>
+  document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
