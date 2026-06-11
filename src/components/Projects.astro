@@ -6,11 +6,100 @@ import Link from "./Link.astro";
 
 const projects = [
   {
+    title: "Rose Agency",
+    date: "Agency Website",
+    desc: "I developed the new Rose Agency website using Astro with WordPress as a headless CMS. I built the frontend, connected the WordPress content, handled responsive layouts, performance fixes, caching, deployment, and Cloudflare setup based on the provided design.",
+    imageSrc: "/images/ra-website.jpeg",
+    imageAlt: "Hero screenshot of the Rose Agency website",
+    links: [
+      {
+        text: "Visit Live Site",
+        url: "https://roseagency.ca",
+      },
+    ],
+    icons: [
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:wordpress-icon", skillName: "WordPress" },
+      { iconName: "logos:javascript", skillName: "JavaScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:cloudflare-icon", skillName: "Cloudflare" },
+      { iconName: "simple-icons:gsap", skillName: "GSAP" },
+      { iconName: "simple-icons:threedotjs", skillName: "Three.js" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    title: "Rose Agency WordPress Websites",
+    date: "Custom WordPress Theme",
+    desc: "I built a custom WordPress theme with Tailwind CSS, reusable components, and ACF content fields, then used it for several Rose Agency websites.",
+    imageSrc: "/images/ra-wp-websites.jpeg",
+    imageAlt: "Screenshot collage of four Rose Agency WordPress website projects",
+    links: [
+      {
+        text: "Salmon Seekers Fishing",
+        url: "https://salmonseekersfishing.com",
+      },
+      {
+        text: "Raising Spirits",
+        url: "https://raising-spirits.com",
+      },
+      {
+        text: "Marine Gateway 2",
+        url: "https://marinegateway2.com",
+      },
+      {
+        text: "HR Outsourced",
+        url: "https://hroutsourced.ca",
+      },
+      {
+        text: "YQT Solutions",
+        url: "https://yqtsolutions.com",
+      },
+    ],
+    icons: [
+      { iconName: "logos:wordpress-icon", skillName: "WordPress" },
+      { iconName: "logos:php", skillName: "PHP" },
+      { iconName: "logos:javascript", skillName: "JavaScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    title: "Sentus",
+    date: "Business Website",
+    desc: "I developed a production business website using Astro, JavaScript, Tailwind CSS, and GSAP. I also implemented lead capture, form handling, email workflows, and a serverless function for submissions.",
+    imageSrc: "/images/sentus-website.jpeg",
+    imageAlt: "Hero screenshot of the Sentus website",
+    links: [{ text: "Visit Live Site", url: "https://sentus.cl" }],
+    icons: [
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:javascript", skillName: "JavaScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
+    title: "Inti Holística",
+    date: "Service Website",
+    desc: "I built a responsive service-based website using Astro, React, Tailwind CSS, and Framer Motion. The site supports service discovery and appointment booking with accessible layouts and smooth interactions.",
+    imageSrc: "/images/inti-ss.webp",
+    imageAlt: "Screenshot of the Inti Holística website",
+    links: [{ text: "Visit Live Site", url: "https://www.intiholistica.com" }],
+    icons: [
+      { iconName: "logos:astro-icon", skillName: "Astro" },
+      { iconName: "logos:react", skillName: "React" },
+      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
+      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
+      { iconName: "logos:github-icon", skillName: "GitHub" },
+    ],
+  },
+  {
     title: "EVDrop",
-    date: "February 2024 - June 2024",
-    desc: "MVP mobile application for locating electric vehicle charging stations and booking charging sessions, built with map-based discovery, user authentication, backend data management, and a functional reservation flow using prototype charger location data.",
+    date: "MVP Mobile App",
+    desc: "I developed an MVP mobile app to help users find EV charging stations and book charging sessions. I built the map-based discovery, authentication, backend data handling, and reservation flow using React Native, TypeScript, Google Maps API, and Supabase.",
     imageSrc: "/images/evdrop.webp",
-    imageAlt: "EVDrop mobile application project",
+    imageAlt: "Screenshot of the EVDrop mobile app",
     links: [],
     icons: [
       { iconName: "logos:react", skillName: "React Native" },
@@ -20,10 +109,10 @@ const projects = [
   },
   {
     title: "Remedi App",
-    date: "September 2023 - March 2024",
-    desc: "Full-stack MVP web application supporting medication requests between patients and pharmacies, with authentication, database-driven workflows, and core application logic.",
+    date: "MVP Web App",
+    desc: "I designed and built a full-stack MVP web app for medication requests between patients and pharmacies. I implemented authentication, database structure, core business logic, and media handling using Next.js, TypeScript, Prisma, PostgreSQL, Supabase, and Cloudinary.",
     imageSrc: "/images/remedi.webp",
-    imageAlt: "Remedi App project",
+    imageAlt: "Screenshot of the Remedi App web application",
     links: [],
     icons: [
       { iconName: "logos:nextjs-icon", skillName: "Next.js" },
@@ -34,50 +123,11 @@ const projects = [
     ],
   },
   {
-    title: "Sentus",
-    date: "Business Website",
-    desc: "Production business website designed to showcase services, publish content, and capture leads through serverless email handling.",
-    imageSrc: "/images/sentus.jpeg",
-    imageAlt: "",
-    links: [
-      {
-        text: "Visit Live Site",
-        url: "https://sentus.cl",
-      },
-    ],
-    icons: [
-      { iconName: "logos:astro-icon", skillName: "Astro" },
-      { iconName: "logos:javascript", skillName: "JavaScript" },
-      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
-      { iconName: "logos:github-icon", skillName: "GitHub" },
-    ],
-  },
-  {
-    title: "Inti Holística",
-    date: "July 2023 - October 2023",
-    desc: "Service-based website designed to showcase wellness services and support appointment booking through a responsive, accessible interface.",
-    imageSrc: "/images/inti-ss.webp",
-    imageAlt: "Inti Holística website project",
-    links: [
-      {
-        text: "Visit Live Site",
-        url: "https://www.intiholistica.com",
-      },
-    ],
-    icons: [
-      { iconName: "logos:astro-icon", skillName: "Astro" },
-      { iconName: "logos:react", skillName: "React" },
-      { iconName: "logos:typescript-icon", skillName: "TypeScript" },
-      { iconName: "logos:tailwindcss-icon", skillName: "Tailwind CSS" },
-      { iconName: "logos:github-icon", skillName: "GitHub" },
-    ],
-  },
-  {
     title: "Stylify",
-    date: "January 2023 - April 2023",
-    desc: "Stylify is a salon management app that helps beauty salons to enhance customer satisfaction and grow their business.",
+    date: "Mobile App",
+    desc: "Mobile app project for salon management, focused on helping salons manage clients, appointments, and business workflows through a clean mobile interface.",
     imageSrc: "/images/stylify-ss.webp",
-    imageAlt: "Stylify Project",
+    imageAlt: "Screenshot of the Stylify landing page",
     links: [
       {
         text: "Visit Live Site",
@@ -98,10 +148,10 @@ const projects = [
   },
   {
     title: "Global Player",
-    date: "September 2022 - December 2022",
-    desc: "Global Player is a web platform that helps professional League of Legends teams make better decisions when recruiting and hiring new players.",
+    date: "Web Platform",
+    desc: "Web platform for League of Legends recruitment, built to help teams compare players and support hiring decisions using player data and team needs.",
     imageSrc: "/images/global-player-ss.webp",
-    imageAlt: "Global Player Project",
+    imageAlt: "Screenshot of the Global Player web platform",
     links: [
       {
         text: "Visit Repository",
@@ -119,35 +169,20 @@ const projects = [
       { iconName: "logos:github-icon", skillName: "GitHub" },
     ],
   },
-  {
-    title: "Get a Tat",
-    date: "May 2022 - August 2022",
-    desc: "Get a Tat is a website dedicated to tattoo artists, helping them showcase their work and connect with new clients while also facilitating booking requests.",
-    imageSrc: "/images/get-a-tat-ss.webp",
-    imageAlt: "Get a Tat Project",
-    links: [
-      {
-        text: "Visit Repository",
-        url: "https://github.com/juggler-dev/webapp_html_get-a-tat",
-      },
-    ],
-    icons: [
-      { iconName: "logos:javascript", skillName: "JavaScript" },
-      { iconName: "logos:firebase", skillName: "Firebase" },
-      { iconName: "logos:html-5", skillName: "HTML5" },
-      { iconName: "logos:css-3", skillName: "CSS3" },
-      { iconName: "logos:sass", skillName: "Sass" },
-      { iconName: "logos:github-icon", skillName: "GitHub" },
-    ],
-  },
 ];
 ---
 
 <SectionContainer id="projects" title="Projects" iconName="mdi:xml">
   {
     projects.map((project) => (
-      <article class="flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center border border-gray-300 rounded-lg mb-10 overflow-hidden">
-        <div class={project.imageSrc ? "lg:flex-1 flex flex-col justify-between p-4 leading-normal lg:order-2" : "w-full flex flex-col justify-between p-4 leading-normal"}>
+      <article class="project-card flex flex-col max-w-[480px] mx-auto lg:max-w-full lg:flex-row items-center shadow-xl rounded-lg mb-10 overflow-hidden">
+        <div
+          class={
+            project.imageSrc
+              ? "lg:flex-1 flex flex-col justify-between p-4 leading-normal lg:order-2"
+              : "w-full flex flex-col justify-between p-4 leading-normal"
+          }
+        >
           <h3 class="flex items-center mb-1 text-2xl font-semibold">
             {project.title}
           </h3>
@@ -155,7 +190,7 @@ const projects = [
           <p class="mb-2">{project.desc}</p>
           <div class="flex flex-col mb-4">
             {project.links.map((link) => (
-              <Link text={link.text} href={link.url} />
+              <Link text={link.text} href={link.url} target="_blank" />
             ))}
           </div>
           <div class="flex flex-wrap gap-3">
@@ -171,7 +206,7 @@ const projects = [
               alt={project.imageAlt}
               width={480}
               height={400}
-              class="object-cover h-[380px] w-full transition-all duration-300 hover:scale-125 lg:hover:translate-x-12 lg:hover:translate-y-10"
+              class="object-cover h-[420px] w-full transition-all duration-300 hover:scale-125 lg:hover:translate-x-12 lg:hover:translate-y-10"
             />
           </div>
         )}

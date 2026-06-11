@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-const { id, class: className, title, iconName } = Astro.props;
+const { id, class: className = "", title, iconName } = Astro.props;
 ---
 
 <section id={id} class={`${className} max-w-4xl mx-auto mb-20`}>

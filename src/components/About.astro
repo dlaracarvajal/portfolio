@@ -10,15 +10,17 @@ import { Icon } from "astro-icon/components";
   >
     <div class="flex-grow order-2 flex flex-col gap-4">
       <p>
-        I'm <strong>Diego Lara Carvajal</strong>, a <strong>Full-Stack Developer</strong>
+        I'm <strong>Diego Lara Carvajal</strong>, a <strong
+          >Full-Stack Developer</strong
+        >
         based in Vancouver, focused on building and maintaining production websites,
         web platforms, internal tools, and MVP applications.
       </p>
 
       <p>
-        My work combines frontend development, CMS architecture, cloud infrastructure,
-        API integrations, automation, performance optimization, accessibility, and
-        technical SEO.
+        My work combines frontend development, CMS architecture, cloud
+        infrastructure, API integrations, automation, performance optimization,
+        accessibility, and technical SEO.
       </p>
 
       <div
@@ -26,18 +28,19 @@ import { Icon } from "astro-icon/components";
         class="flex flex-col gap-4 overflow-hidden max-h-0 transition-all duration-300"
       >
         <p>
-          At Rose Agency, I work on client websites and web platforms using React,
-          Astro, TypeScript, PHP, Tailwind CSS, and WordPress. I also manage
-          production environments on Cloudways and WP Engine, configure Cloudflare
-          DNS and security rules, integrate APIs and CRM systems, and develop
-          monitoring tools for uptime, SSL and domain expiration, and WordPress
-          maintenance data.
+          At Rose Agency, I work on client websites and web platforms using
+          React, Astro, TypeScript, PHP, Tailwind CSS, and WordPress. I also
+          manage production environments on Cloudways and WP Engine, configure
+          Cloudflare DNS and security rules, integrate APIs and CRM systems, and
+          develop monitoring tools for uptime, SSL and domain expiration, and
+          WordPress maintenance data.
         </p>
 
         <p>
-          I have also developed MVP applications across web and mobile platforms,
-          including EVDrop and Remedi, using technologies such as React Native,
-          Next.js, Supabase, Prisma, PostgreSQL, and Google Maps API.
+          I have also developed MVP applications across web and mobile
+          platforms, including EVDrop and Remedi, using technologies such as
+          React Native, Next.js, Supabase, Prisma, PostgreSQL, and Google Maps
+          API.
         </p>
 
         <p class="mb-4">
@@ -46,19 +49,23 @@ import { Icon } from "astro-icon/components";
           professionally in English and Spanish.
         </p>
       </div>
-      <div
+      <button
+        type="button"
+        onclick="toggleContent()"
+        id="readMoreButton"
+        aria-expanded="false"
         class="button cursor-pointer flex gap-1 items-center px-4 py-2 yell bg-yellow-600 text-black tracking-widest lg:text-lg font-semibold rounded-full w-fit mx-auto"
       >
         <Icon name="mdi:book-open" size={30} />
-        <button onclick="toggleContent()" id="readMoreButton">Read More</button>
-      </div>
+        <span id="readMoreButtonText">Read More</span>
+      </button>
     </div>
     <Image
       src="/images/diego-photo-2.jpg"
       alt="Diego Profile Picture"
       width={300}
       height={300}
-      class="flex-1 rounded-full self-center lg:order-2"
+      class="flex-1 shadow-xl rounded-full self-center lg:order-2"
     />
   </article>
 </SectionContainer>
@@ -67,13 +74,18 @@ import { Icon } from "astro-icon/components";
   function toggleContent() {
     const moreContent = document.getElementById("moreContent");
     const readMoreButton = document.getElementById("readMoreButton");
+    const readMoreButtonText = document.getElementById("readMoreButtonText");
 
-    if (moreContent.style.maxHeight) {
+    const isOpen = moreContent.style.maxHeight;
+
+    if (isOpen) {
       moreContent.style.maxHeight = null;
-      readMoreButton.innerText = "Read More";
+      readMoreButtonText.innerText = "Read More";
+      readMoreButton.setAttribute("aria-expanded", "false");
     } else {
       moreContent.style.maxHeight = moreContent.scrollHeight + "px";
-      readMoreButton.innerText = "Read Less";
+      readMoreButtonText.innerText = "Read Less";
+      readMoreButton.setAttribute("aria-expanded", "true");
     }
   }
 </script>
