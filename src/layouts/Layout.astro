@@ -42,6 +42,59 @@ const { title } = Astro.props;
     <Header />
     <slot />
     <Footer />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      defer></script>
+    <script is:inline>
+      window.addEventListener("load", () => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        if (!window.gsap || !window.ScrollTrigger) {
+          return;
+        }
+
+        const { gsap, ScrollTrigger } = window;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from("header", {
+          autoAlpha: 0,
+          y: -16,
+          duration: 0.7,
+          ease: "power3.out",
+        });
+
+        gsap.utils.toArray("section").forEach((section) => {
+          const sectionHeader = section.querySelector(":scope > div");
+          const contentItems = section.querySelectorAll(
+            ":scope article, :scope form, :scope > div:not(:first-child)"
+          );
+          const items = [sectionHeader, ...contentItems].filter(Boolean);
+
+          if (!items.length) {
+            return;
+          }
+
+          gsap.from(items, {
+            autoAlpha: 0,
+            y: 28,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              once: true,
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
 
